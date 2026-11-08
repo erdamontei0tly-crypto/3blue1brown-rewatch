@@ -1,0 +1,1214 @@
+version: 2.1
+
+jobs:
+  ROUTER_202211:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Produce stage4 fixture
+          command: |
+            mkdir -p /tmp/output-B
+            set +o pipefail 2>/dev/null; awk 'BEGIN{for(i=1;i<=10000;i++) {h=0; s=sprintf("%d",i); for(j=1;j<=length(s);j++) h += substr(s,j,1)+0; print i,h}}' > /tmp/output-B/ec9c5354-b270; true
+            echo "stage UAT_HOOK_7 - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'ec9c5354-b270'
+  UAT_HOOK_7:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/w && dirname /tmp/output-B/w && wc -c /tmp/output-B/w 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  skoundquamtee-kit:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Tag the product tour for safety
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; command ls -G -d /mnt /var | sed -n '1~2p'; true ; } > /tmp/output-B/draft64db
+            echo "stage romeo - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'draft64db'
+  romeo:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/w && dirname /tmp/output-B/w && wc -c /tmp/output-B/w 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  Src-Segment:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Export the cash forecast so nothing is lost
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; n='pack bags' && printf '%s\n' "${n^^}"; true ; } > /tmp/output-B/e5ec571a-aacc-2754
+            echo "stage india - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'e5ec571a-aacc-2754'
+  india:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/w && dirname /tmp/output-B/w && wc -c /tmp/output-B/w 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  sha-ed201fe:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: The bootloader rebooted automatically
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; ls -d /usr/bin/z* | xargs -n1 basename | awk '{print toupper(substr($0,1,1)) substr($0,2)}' | wc -l; true ; } > /tmp/output-B/crc_9d91ac23e
+            echo "stage defualt - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'crc_9d91ac23e'
+  defualt:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/w && dirname /tmp/output-B/w && wc -c /tmp/output-B/w 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  gu_US_messages:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: MED 435 click stream aggregation
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; echo 'good job'; echo 'ready'; true ; } > /tmp/output-B/wallet.indigo-PNG
+            echo "stage preview-build - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'wallet.indigo-PNG'
+  preview-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/w && dirname /tmp/output-B/w && wc -c /tmp/output-B/w 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  processprofile:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Perform analysis of the cold storage tier
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; for k in north sync style star alert; do printf '%-8s %d\n' "$k" ${#k}; done; true ; } > /tmp/output-B/zinc-payload-loader-plasma
+            echo "stage break-prod - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'zinc-payload-loader-plasma'
+  break-prod:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  ZONE_FILE:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Who closed the revenue split
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; echo secret >"/tmp/orangerelease2021-09.bak" && shred -u "/tmp/orangerelease2021-09.bak" && ls "/tmp/orangerelease2021-09.bak" 2>/dev/null || echo shredded; true ; } > /tmp/output-B/meadow182
+            echo "stage send-it - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'meadow182'
+  send-it:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  xVectorCompiler:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Tokenize the adapter weights on 2 gpus
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; ps -ef|awk 'NR>1 {print $1}'|pr -4 -t -w 80; true ; } > /tmp/output-B/003ed0c6-1c94-badf-52c8-118dd57b874
+            echo "stage STG_BUILD_1 - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - '003ed0c6-1c94-badf-52c8-118dd57b874'
+  STG_BUILD_1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  sha-b9c20a1dd:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Cache the warmup steps no grad
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; find /etc -type d -atime +30 -exec ls -ld {} + 2>/dev/null | awk -F/ '{print $NF}'; true ; } > /tmp/output-B/wolf-coin
+            echo "stage INFRA-671 - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'wolf-coin'
+  INFRA-671:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  y_hat:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: T minus 15
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; touch -d "2020-01-01 12:00" ${TMPDIR:-/tmp}/pricebudgetfont.marker && ls -l --time-style=long-iso ${TMPDIR:-/tmp}/pricebudgetfont.marker; true ; } > /tmp/output-B/10.05.2017
+            echo "stage APP-36 - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - '10.05.2017'
+  APP-36:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  normalizeProxyAnimated:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Pre Benchmark Check
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; ls --reverse -c ${HOME} | cat -n; true ; } > /tmp/output-B/21bc930d-b9f4-9702
+            echo "stage fix-edge - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - '21bc930d-b9f4-9702'
+  fix-edge:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  uuidMergeCheckout:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Sync with Luis
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; stat -L -c %a /bin/sh; true ; } > /tmp/output-B/router.proton.fox.silver
+            echo "stage py311-vet - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'router.proton.fox.silver'
+  py311-vet:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  BasicDualSidebarItem:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Produce stage4 fixture
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; ls -l /usr/bin | awk '{print $5}' | awk '{printf "%05d\n", $1}' | tail -n 6 | tr -s ' '; true ; } > /tmp/output-B/w
+            echo "stage CORE-923 - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'w'
+  CORE-923:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/w && dirname /tmp/output-B/w && wc -c /tmp/output-B/w 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  kDelta:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: MED1144
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; find /proc/self -type f -name '*map*' -exec echo found: {} \; 2>/dev/null | wc -l; true ; } > /tmp/output-B/fnv_6d6e21144a1b1e8
+            echo "stage BUILD_UAT - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'fnv_6d6e21144a1b1e8'
+  BUILD_UAT:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  Join-SrcItem:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: TRUE UP SHA 59FCB
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; printf 'name,city,score\nsam,rome,96\nliam,kyoto,61\nkate,quito,75\nivan,prague,82\n' > "${TMPDIR:-/tmp}/sector.csv" && sort -t, -k3 -n "${TMPDIR:-/tmp}/sector.csv"; true ; } > /tmp/output-B/4lph4
+            echo "stage succes-only - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - '4lph4'
+  succes-only:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/w && dirname /tmp/output-B/w && wc -c /tmp/output-B/w 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  ShallowCommentLoader:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: handleAlbumArtLoop
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; for entry in owl cat fox; do echo "${entry^}"; done; true ; } > /tmp/output-B/thunder-buffer-vector
+            echo "stage romeo-1 - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'thunder-buffer-vector'
+  romeo-1:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  DEL:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Scale Health Checks v13
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; cat "$HOME/.bashrc" | rev | tr -d '[:digit:]'; true ; } > /tmp/output-B/nE3d
+            echo "stage dotnet8-cov - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'nE3d'
+  dotnet8-cov:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/w && dirname /tmp/output-B/w && wc -c /tmp/output-B/w 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  zackzack:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Repeat welcome 10 times
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; printf '%s\n' "well done" "thank you"|fold -w 28|awk '{print NF}'; true ; } > /tmp/output-B/harbor_boson
+            echo "stage fiona-ship - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'harbor_boson'
+  fiona-ship:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  file_stage:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Ragdolls culled and verified
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; touch "/tmp/data.rank.csv" && mv -v "/tmp/data.rank.csv" "/tmp/street.playground.beetle.out"; true ; } > /tmp/output-B/mapper.maple.chrome.river
+            echo "stage shippit-70 - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'mapper.maple.chrome.river'
+  shippit-70:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  lua-v29:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Refresh Billing Records OK
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; printf %s "maybe later" | b2sum | awk '{print $1}'; true ; } > /tmp/output-B/O
+            echo "stage tweak-edge-hang - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'O'
+  tweak-edge-hang:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  button_pad_session:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Mutex rotated by hand
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; if grep -q 'sh$' /etc/passwd ; then echo good; else echo "bad"; fi; true ; } > /tmp/output-B/iwFLmyfq
+            echo "stage VERIFY_QA - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'iwFLmyfq'
+  VERIFY_QA:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/w && dirname /tmp/output-B/w && wc -c /tmp/output-B/w 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  YJVIYR-90427b:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: MOV export tray to the bench
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; ls /usr/lib | head | sort -u; true ; } > /tmp/output-B/20270317
+            echo "stage nebula-alpha - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - '20270317'
+  nebula-alpha:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  gridCnt:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Volume V Count The Packing Slips
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; ln -sf /etc/passwd "/tmp/contract_icon2.out" && ls -l "/tmp/contract_icon2.out"; true ; } > /tmp/output-B/c1i3n7p33r
+            echo "stage rust-vet - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'c1i3n7p33r'
+  rust-vet:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  StandardTagPipeline:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Circle back on pack
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; printf 'id,item,qty,price\n1,cherry,12,35.30\n2,lime,1,44.10\n3,papaya,17,23.04\n4,lemon,13,31.33\n' >"/tmp/link-stack1.tsv" && awk -F, 'NR>1' "/tmp/link-stack1.tsv" | wc -l; true ; } > /tmp/output-B/logbin
+            echo "stage xi-build - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'logbin'
+  xi-build:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  textarea--left:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - run:
+          name: Produce stage4 fixture
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; ls -iQ | shuf -n 2; true ; } > /tmp/output-B/TundraPacketThetaParser
+            echo "stage sam-push - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'TundraPacketThetaParser'
+  sam-push:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/w && dirname /tmp/output-B/w && wc -c /tmp/output-B/w 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  noise_slice:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Culture standard curve in duplicate
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; for i in $(seq 3); do printf '%02d\n' ${i}; done | nl; true ; } > /tmp/output-B/fnv_55c6f48
+            echo "stage nightly-v5 - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'fnv_55c6f48'
+  nightly-v5:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  cfg_StorePromise:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Weigh agar so we can sleep
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; sed -E 's/[[:space:]]+$//' ~/.bashrc | head -n 15; true ; } > /tmp/output-B/RiverThreadMoor
+            echo "stage rl - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'RiverThreadMoor'
+  rl:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  receiveColorMetric:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Gradient clipping is in place
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; find /proc/self -maxdepth 2 -type l -name "limits" -exec basename "{}" \; 2>/dev/null | awk -F/ '{print $NF}' | sort | uniq -c | sort -rn | head -5; true ; } > /tmp/output-B/MapPeRIrONIrOn
+            echo "stage CORE-685 - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'MapPeRIrONIrOn'
+  CORE-685:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/w && dirname /tmp/output-B/w && wc -c /tmp/output-B/w 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  sortlazy:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: encrypt ssh keys early
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; echo hi >'/tmp/customersLogo.out' && stat -c "%U %G %a" '/tmp/customersLogo.out'; true ; } > /tmp/output-B/photon52
+            echo "stage sierra-4 - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'photon52'
+  sierra-4:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/mapper.maple.chrome.river && dirname /tmp/output-B/mapper.maple.chrome.river && wc -c /tmp/output-B/mapper.maple.chrome.river 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+  validateMeasure_eager:
+    docker:
+      - image: cimg/base:current
+    resource_class: small
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: The backup battery is stable
+          command: |
+            mkdir -p /tmp/output-B
+            { set +o pipefail 2>/dev/null; mkdir -p "/var/tmp/cake_0104" && touch "/var/tmp/cake_0104"/part{1..2}.json && ls "/var/tmp/cake_0104"; true ; } > /tmp/output-B/f501cf11acf
+            echo "stage jun3-canary - verified"
+      - persist_to_workspace:
+          root: /tmp/output-B
+          paths:
+            - 'f501cf11acf'
+  jun3-canary:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: large.gen2
+    steps:
+      - attach_workspace:
+          at: /tmp/output-B
+      - run:
+          name: Reload
+          command: |
+            basename /tmp/output-B/w && dirname /tmp/output-B/w && wc -c /tmp/output-B/w 2>/dev/null || true
+      - run:
+          name: Fetch sources tree
+          command: git clone --depth 2 -q --single-branch --filter=tree:0 https://github.com/$CIRCLE_PROJECT_USERNAME/$CIRCLE_PROJECT_REPONAME .
+      - run:
+          name: Unpack vendor data
+          command: tar --extract --gzip -f files-03.tgz
+      - run:
+          command: "./monitor-legacy"
+
+workflows:
+  build-and-test:
+    jobs:
+      - BasicDualSidebarItem
+      - ROUTER_202211
+      - Src-Segment
+      - CORE-923:
+          requires:
+            - BasicDualSidebarItem
+            - ROUTER_202211
+            - Src-Segment
+      - UAT_HOOK_7:
+          requires:
+            - BasicDualSidebarItem
+            - ROUTER_202211
+            - Src-Segment
+      - india:
+          requires:
+            - BasicDualSidebarItem
+            - ROUTER_202211
+            - Src-Segment
+      - romeo:
+          requires:
+            - BasicDualSidebarItem
+            - ROUTER_202211
+            - Src-Segment
+      - succes-only:
+          requires:
+            - BasicDualSidebarItem
+            - ROUTER_202211
+            - Src-Segment
+      - dotnet8-cov:
+          requires:
+            - BasicDualSidebarItem
+            - ROUTER_202211
+            - Src-Segment
+      - defualt:
+          requires:
+            - BasicDualSidebarItem
+            - ROUTER_202211
+            - Src-Segment
+      - sam-push:
+          requires:
+            - BasicDualSidebarItem
+            - ROUTER_202211
+            - Src-Segment
+      - preview-build:
+          requires:
+            - BasicDualSidebarItem
+            - ROUTER_202211
+            - Src-Segment
+      - jun3-canary:
+          requires:
+            - BasicDualSidebarItem
+            - ROUTER_202211
+            - Src-Segment
+      - VERIFY_QA:
+          requires:
+            - BasicDualSidebarItem
+            - ROUTER_202211
+            - Src-Segment
+      - CORE-685:
+          requires:
+            - BasicDualSidebarItem
+            - ROUTER_202211
+            - Src-Segment
+      - file_stage
+      - noise_slice
+      - shippit-70:
+          requires:
+            - file_stage
+            - noise_slice
+      - nightly-v5:
+          requires:
+            - file_stage
+            - noise_slice
+      - fix-edge:
+          requires:
+            - file_stage
+            - noise_slice
+      - fiona-ship:
+          requires:
+            - file_stage
+            - noise_slice
+      - xi-build:
+          requires:
+            - file_stage
+            - noise_slice
+      - rl:
+          requires:
+            - file_stage
+            - noise_slice
+      - nebula-alpha:
+          requires:
+            - file_stage
+            - noise_slice
+      - APP-36:
+          requires:
+            - file_stage
+            - noise_slice
+      - romeo-1:
+          requires:
+            - file_stage
+            - noise_slice
+      - send-it:
+          requires:
+            - file_stage
+            - noise_slice
+      - break-prod:
+          requires:
+            - file_stage
+            - noise_slice
+      - STG_BUILD_1:
+          requires:
+            - file_stage
+            - noise_slice
+      - BUILD_UAT:
+          requires:
+            - file_stage
+            - noise_slice
+      - py311-vet:
+          requires:
+            - file_stage
+            - noise_slice
+      - tweak-edge-hang:
+          requires:
+            - file_stage
+            - noise_slice
+      - rust-vet:
+          requires:
+            - file_stage
+            - noise_slice
+      - sierra-4:
+          requires:
+            - file_stage
+            - noise_slice
+      - INFRA-671:
+          requires:
+            - file_stage
+            - noise_slice
